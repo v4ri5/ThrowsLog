@@ -1,0 +1,54 @@
+<!-- Create the for the athlete form with the following fields: 
+    >Athlete Event
+    >Description of training
+    >Key Takeaways
+    >How they felt
+    >How they sleep
+    >If they ate 
+    >If they are injured if so what injuries
+Each field should be required
+-->
+<head>
+    <link rel="stylesheet" href="FormStyleCSS.css">
+    <form id="AthleteForm">
+        
+        <label for="athleteEvent">Event:</label>
+        <input type="text" id="athleteEvent" name="athleteEvent" required>
+        
+        
+        <label for="Description">Description:</label>
+        <input type="textarea" id="Description" name="Description" required>
+
+        
+        <label for="keyTakeaways">Key Takeaways:</label>
+        <input type="textarea" id="keyTakeaways" name="keyTakeaways" required>
+
+        
+        <label for="feel">Feel Good?(y/n):</label>
+        <select id="feel" name="feel" required>
+            <option value="">-- Select --</option>
+            <option value="great">Great</option>
+            <option value="good">Good</option>
+            <option value="okay">Okay</option>
+            <option value="poor">Poor</option>
+        </select>
+
+        
+        <label for="sleep">Sleep(Hours):</label>
+        <input type="number" id="sleep" name="sleep" required>
+
+        
+        <label for="food">Did you eat?(y/n):</label>
+        <select id="food" name="food" required>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+
+        
+        <label for="injuries">Injuries(list them):</label>
+        <input type="textarea" id="injuries" name="injuries" required>
+
+        
+        <input type="submit" value="Submit">
+    </form>
+</head>

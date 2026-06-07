@@ -1,0 +1,39 @@
+label{
+    display: block;
+    margin-bottom: 1.2rem;
+    font-size: 1.2rem;
+}
+
+body{
+    display: flex;
+    justify-content: center; /* horizontal*/
+    align-items: center; /*vertical*/
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f5f5;
+}
+
+input,select,textarea{
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+input[type="submit"]{
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 1.2rem;
+}
+form{
+    background: white;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 20px;
+}
