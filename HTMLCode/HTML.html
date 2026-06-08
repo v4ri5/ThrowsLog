@@ -6,6 +6,7 @@
     <title>Athlete-Training-Log</title>
 </head>
 <body class = "body">
+<div class="subBody">
 
 <div class = "top">
     <div class="pic_box"><img src="/Assets/Images/profilePic.jpg" alt="Profile pic" class="profile_pic"></div>
@@ -15,13 +16,21 @@
 <div class = "getDone_box"><h1 class="heading" style="font-size: 25px">Goals</h1><div class="goal_info"><p>you can put whatever info you want here such as season goals and things to work on. this is just random text to make sure thisa is working the way I want it t. more randome text to make sure this looks good and work properly. it works on my computer so hopfuly it works on yours : ). </p></div></div>
 
 <div class ="bottom">
-        <div class="vidoe_box"><button class = "video_button" id="VB"><img src="/Assets/Images/camera.jpg" alt="cam pic" class="cam_pic"></button></div>
-        <div class = "trainingLog_box"><button class="TrainingLog_button" id="TL_button"><img src="/Assets/Images/notebook.jpg" alt="notebook pic" class="cam_pic"> </button></div>
+        <div class="vidoe_box"><button class = "video_button" id="VB" onclick=""><img src="/Assets/Images/camera.jpg" alt="cam pic" class="cam_pic"></button></div>
+        <div class = "trainingLog_box"><button  class="TrainingLog_button" id="TL_button" onclick="openPopup()"><img src="/Assets/Images/notebook.jpg" alt="notebook pic" class="cam_pic"> </button></div>
+</div>
+
+    <div class="AthleteForm" id="athleteForm" style="display: none">
+        <div class="AthletePopUpForm" id="athletePopUpForm">
+            <iframe class="Iframe" src="AthleteForm.html"></iframe>
+            <button class="CloseBut" id="closeBut" onclick="closePopup()">X</button>
+        </div>
+    </div>
+
+
 </div>
 
 
- <p>let me know what you think </p>
-
-<script src="index.js" ></script>
+<script src="/JavaScript Code/index.js" ></script>
 </body>
 </html>
