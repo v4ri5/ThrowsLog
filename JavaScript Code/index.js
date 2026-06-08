@@ -1,11 +1,8 @@
-const TL_button = document.getElementById("TL_button");
+function openPopup() {
+    document.getElementById("athleteForm").style.display = "flex";
+}
 
-TL_button.addEventListener("click", ( function(){
-    window.open("./AthleteForm.html");
-}))
+function closePopup() {
+    document.getElementById("athleteForm").style.display = "none";
 
-const VV_button = document.getElementById("VB");
-
-VV_button.addEventListener("click", ( function(){
-    window.open("./VideoVault.html");
-}))
+}
