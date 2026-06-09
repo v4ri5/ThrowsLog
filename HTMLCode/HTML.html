@@ -16,13 +16,32 @@
 
     <div class ="bottom">
         <div class = "info_box"><h1 class="heading" style="font-size: 20px">Athlete info</h1><div class="info_body"><p>PR</p><p>DT:52.36</p><p>SP:15.36</p><p>HT:57.32</p><p>JT:0</p><p>WT:20.00</p></div></div>
-            <div class="vidoe_box"><button class = "video_button" id="VB"><img src="/Assets/Images/camera.jpg" alt="cam pic" class="cam_pic"></button></div>
-            <div class = "trainingLog_box"><button class="TrainingLog_button" id="TL_button"><img src="/Assets/Images/notebook.jpg" alt="notebook pic" class="cam_pic"> </button></div>
+            <div class="video_box">
+                <button class = "video_button" id="VB" onclick="">
+                    <img src="/Assets/Images/camera.jpg" alt="cam pic" class="cam_pic">
+                </button>
+                <p class="btn-label">Video</p>
+            </div>
+            
+            <div class = "trainingLog_box">
+                <button  class="TrainingLog_button" id="TL_button" onclick="openPopup()">
+                    <img src="/Assets/Images/MinimalistNotebook.jpg" alt="notebook pic" class="notebook_pic"> 
+                </button>
+                <p class="btn-label">Training Log</p>
+            </div>
+    </div>
+
+    <div class="AthleteForm" id="athleteForm" style="display: none">
+        <div class="AthletePopUpForm" id="athletePopUpForm">
+            <iframe class="Iframe" src="AthleteForm.html"></iframe>
+            <button class="CloseBut" id="closeBut" onclick="closePopup()">X</button>
+        </div>
     </div>
 
 
-    <p>let me know what you think </p>
+</div>
 
-    <script src="/JavaScript Code/index.js" ></script>
+
+        <script src="/JavaScript Code/index.js" ></script>
     </body>
 </html>
