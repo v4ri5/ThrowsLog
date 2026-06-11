@@ -182,6 +182,7 @@ body {
     padding: 1rem;
     margin-bottom: 1rem;
     background: #f9f9f9;
+    position: relative;
 }
 
 .historyEntry h3 {
@@ -196,6 +197,24 @@ body {
     font-size: 0.85rem;
     color: #555;
     line-height: 1.6;
+}
+
+
+.deleteBtn {
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    background: #ff4d4d;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.deleteBtn:hover {
+    background: #cc0000;
 }
 .Iframe {
     width: 100%;
@@ -252,7 +271,6 @@ body {
     font-size: 0.85rem;
     white-space: nowrap;
 }
-
 .historyControls button:hover {
     background: #f0f0f0;
 }

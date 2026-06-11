@@ -36,12 +36,28 @@ function filterHistory(){
     renderEntries(filtered);
 }
 
+function deleteEntry(index){
+    const stored = JSON.parse(localStorage.getItem('trainingLog')) || [];
+    const entryToDelete = allEntries[index];
+
+    const storedIndex = stored.findIndex(entry =>
+        entry.date === entryToDelete.date &&
+        entry.event === entryToDelete.event &&
+        entry.description === entryToDelete.description 
+    );
+
+    if (storedIndex !== -1){
+       stored.splice(storedIndex,1); 
+       localStorage.setItem('trainingLog', JSON.stringify(stored));
+        openHistory();
+    }   
+}
 function renderEntries(entries) {
     const content = document.getElementById('historyContent');
     if (entries.length === 0) {
         content.innerHTML = '<p style="color:#999; text-align:center;">No entries found.</p>';
     } else {
-        content.innerHTML = entries.map(entry => `
+        content.innerHTML = entries.map((entry, index) => `
             <div class="historyEntry">
                 <h3>${entry.date} — ${entry.event}</h3>
                 <p><strong>Description:</strong> ${entry.description}</p>
@@ -50,6 +66,7 @@ function renderEntries(entries) {
                 <p><strong>Sleep:</strong> ${entry.sleep} hrs</p>
                 <p><strong>Ate:</strong> ${entry.food}</p>
                 <p><strong>Injuries:</strong> ${entry.injuries}</p>
+                <button class="deleteBtn" onclick="deleteEntry(${index})">Delete</button>    
             </div>
         `).join('');
     }
