@@ -109,7 +109,7 @@ function updateStats() {
     }
 
     document.getElementById('entryCount').textContent = 
-        `${allEntries.length} Entries · Avg Sleep: ${avgSleep}hrs · ${streak} Day Streak`;
+        `${allEntries.length} Entries · Avg Sleep: ${avgSleep}hrs · ${streak}Streak`;
 }
 
 function closeHistory() {
