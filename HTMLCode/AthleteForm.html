@@ -1,19 +1,12 @@
-<!-- Create the for the athlete form with the following fields: 
-    >Athlete Event
-    >Description of training
-    >Key Takeaways
-    >How they felt
-    >How they sleep
-    >If they ate 
-    >If they are injured if so what injuries
-Each field should be required
--->
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="/CSSCode/FormStyleCSS.css">
-    
 </head>
 <body>
     <form id="AthleteForm">
+
         <label for="date">Date:</label>
         <input type="date" id="date" name="date" required>
 
@@ -24,19 +17,16 @@ Each field should be required
             <option value="discus">Discus</option>
             <option value="hammer">Hammer</option>
             <option value="weight">Weight</option>
-            <option value="javilin">Javilin</option>
+            <option value="javelin">Javelin</option>
         </select>
-        
-        
+
         <label for="Description">Description:</label>
         <textarea id="Description" name="Description" required></textarea>
 
-        
         <label for="keyTakeaways">Key Takeaways:</label>
         <textarea id="keyTakeaways" name="keyTakeaways" required></textarea>
 
-        
-        <label for="feel">Feel Good?(y/n):</label>
+        <label for="feel">How did you feel?</label>
         <select id="feel" name="feel" required>
             <option value="">-- Select --</option>
             <option value="great">Great</option>
@@ -45,23 +35,21 @@ Each field should be required
             <option value="poor">Poor</option>
         </select>
 
-        
-        <label for="sleep">Sleep(Hours):</label>
-        <input type="number" id="sleep" name="sleep" required>
+        <label for="sleep">Sleep (Hours):</label>
+        <input type="number" id="sleep" name="sleep" min="0" max="24" step="0.5" required>
 
-        
-        <label for="food">Did you eat?(y/n):</label>
+        <label for="food">Did you eat?</label>
         <select id="food" name="food" required>
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
 
-        
-        <label for="injuries">Injuries(list them):</label>
-        <input type="textarea" id="injuries" name="injuries" >
+        <label for="injuries">Injuries:</label>
+        <textarea id="injuries" name="injuries" placeholder="None"></textarea>
 
-        
         <input type="submit" value="Submit">
+
     </form>
     <script src="/JavaScript Code/AthleteForm.js"></script>
 </body>
+</html>
