@@ -1,0 +1,49 @@
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+
+#suggestion-panel {
+    font-family: system-ui, -apple-system, sans-serif;
+    max-width: 680px;
+    padding: 1rem 0;
+    box-sizing: border-box;
+}
+
+#suggestion-card ul li + li {
+    margin-top: 2px;
+}
+
+#suggestion-card {
+    transition: border-color 0.2s;
+}
+
+@media (prefers-color-scheme: dark) {
+    #suggestion-panel {
+        color-scheme: dark;
+    }
+
+    #suggestion-card[style*="background:#FCEBEB"] {
+        background: #501313 !important;
+        border-color: #A32D2D !important;
+    }
+    #suggestion-card[style*="background:#FAEEDA"] {
+        background: #412402 !important;
+        border-color: #854F0B !important;
+    }
+    #suggestion-card[style*="background:#E6F1FB"] {
+        background: #042C53 !important;
+        border-color: #185FA5 !important;
+    }
+    #suggestion-card[style*="background:#EAF3DE"] {
+        background: #173404 !important;
+        border-color: #3B6D11 !important;
+    }
+}

@@ -4,6 +4,9 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="/CSSCode/Css.css">
         <title>Athlete-Training-Log</title>
+        
+        <!-- Tabler icons for the suggestion card icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
     </head>
     <body class = "body">
 
@@ -19,7 +22,8 @@
 
 
     <div class ="bottom">
-        <div class="info_box" onclick="openPRs()">
+        <div id="suggestion-panel"></div>
+        <div class="info_box">
                 <h1 class="heading" style="font-size: 20px">Personal Records</h1>
                 <p class="prInfoHint">tap to edit</p>
                 <div id="profilePRs"></div>
@@ -32,13 +36,13 @@
             </div>
             
             <div class = "trainingLog_box">
-                <button  class="TrainingLog_button" id="TL_button" onclick="openPopup()">
+                <button  class="TrainingLog_button" id="TL_button">
                     <img src="/Assets/Images/MinimalistNotebook.jpg" alt="notebook pic" class="notebook_pic"> 
                 </button>
                 <p class="btn-label">Training Log Form</p>
             </div>
             <div class = "trainingHistorybtn_box">
-                <button class="trainingHistorybtn" id="trainingHistorybtn" onclick="openHistory()">
+                <button class="trainingHistorybtn" id="trainingHistorybtn">
                     <img src="/Assets/Images/HistoryIcon.jpg" alt="historyNoteBook" class="history_NoteBook"> 
                 </button>
                 <p class="btn-label">Training History</p>
@@ -46,7 +50,7 @@
     </div>
     <div class="TrainingHistory" id="trainingHistory" style="display: none;">
         <div class="TrainingHistoryPopUp" id="TrainingHistoryPopUp">
-            <button class="CloseBut" id="closeHistory" onclick="closeHistory()">X</button>
+            <button class="CloseBut" id="closeHistory">X</button>
             <div class="historyHeader">
                 <div class="mo-fire">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -232,15 +236,15 @@
             </div>
             
             <div class="historyControls">
-                <input type="text" id="historyFilter" placeholder="Search by event..." oninput="filterHistory()">
-                <select name="sortByFeel" id="sortByFeel" onchange="filterHistory()">
+                <input type="text" id="historyFilter" placeholder="Search by event...">
+                <select name="sortByFeel" id="sortByFeel" >
                     <option value="">-- Sort By Feel --</option>
                     <option value="great">Great</option>
                     <option value="good">Good</option>
                     <option value="okay">Okay</option>
                     <option value="poor">Poor</option>
                 </select>
-                <button id="sortToggle" onclick="toggleSort()">Newest First</button>
+                <button id="sortToggle">Newest First</button>
             </div>
             <div class="historyContent" id="historyContent">
                 
@@ -251,7 +255,7 @@
     <div class="AthleteForm" id="athleteForm" style="display: none">
         <div class="AthletePopUpForm" id="athletePopUpForm">
             <iframe class="Iframe" src="AthleteForm.html"></iframe>
-            <button class="CloseBut" id="closeBut" onclick="closePopup()">X</button>
+            <button class="CloseBut" id="closeBut">X</button>
         </div>
     </div>
 </div>
@@ -261,16 +265,18 @@
     <div class="PRPopUpContent">
         <div class="PRPopUpHeader">
             <h2>Personal Records</h2>
-            <button class="CloseBut" onclick="closePRs()">X</button>
+            <button class="CloseBut" id="closePRs">X</button>
         </div>
         <div class="prTabs">
-            <button class="prTab active" id="prTab_field" onclick="switchPRTab('field')">Field Events</button>
-            <button class="prTab" id="prTab_weightRoom" onclick="switchPRTab('weightRoom')">Weight Room</button>
+            <button class="prTab active" id="prTab_field" >Field Events</button>
+            <button class="prTab" id="prTab_weightRoom" >Weight Room</button>
         </div>
         <div class="prContent" id="prContent"></div>
     </div>
 </div>
-        <script src="/JavaScript Code/index.js" ></script>
+        <script type="module" src="/JavaScript Code/index.js" ></script>
         <script src="/JavaScript Code/PRs.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+        <script type="module" src="/JavaScript Code/Suggestion.js"></script>
     </body>
 </html>
