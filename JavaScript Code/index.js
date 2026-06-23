@@ -1,11 +1,18 @@
 function openPopup() {
     document.getElementById("athleteForm").style.display = "flex";
 }
+function openPopupvideo() {
+    document.getElementById("Video_Player").style.display = "flex";
+}
 
 function closePopup() {
     document.getElementById("athleteForm").style.display = "none";
-
 }
+
+function closePopupvideo() {
+    document.getElementById("Video_Player").style.display = "none";
+}
+
 const entries = JSON.parse(localStorage.getItem('trainingLog')) || [];
 entries.forEach(entry => {
     console.log(entry);

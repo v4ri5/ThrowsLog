@@ -134,7 +134,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
-.AthleteForm{
+.AthleteForm , .videoplayer {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
@@ -145,7 +145,7 @@ body {
     z-index: 1000;
 }
 
-.AthletePopUpForm {
+.AthletePopUpForm , .videoPlayerPopup{
     position: relative;
     background: #fff;
     border-radius: 12px;
