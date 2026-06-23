@@ -377,3 +377,294 @@ body {
         opacity: 0;
     }
 }
+
+
+/* ════════════════════════════════════════════════════════
+   PR MANAGER  —  paste this at the bottom of Css.css
+   ════════════════════════════════════════════════════════ */
+
+/* ── Popup overlay + container ───────────────────────── */
+.PRPopup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.PRPopUpContent {
+    position: relative;
+    background: #fff;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.PRPopUpHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #e0e0e0;
+    flex-shrink: 0;
+}
+
+.PRPopUpHeader h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #333;
+}
+
+/* ── Tabs ─────────────────────────────────────────────── */
+.prTabs {
+    display: flex;
+    border-bottom: 1px solid #e0e0e0;
+    flex-shrink: 0;
+}
+
+.prTab {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: none;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #999;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+}
+
+.prTab.active {
+    color: #333;
+    border-bottom-color: #333;
+}
+
+.prContent {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 1.5rem;
+}
+
+/* ── Entry row ────────────────────────────────────────── */
+.prEntry {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+    background: #f9f9f9;
+}
+
+.prEntryTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.prLeft {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.prRight {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.prName {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.prValue {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #333;
+    min-width: 58px;
+    text-align: right;
+}
+
+.prDate {
+    font-size: 0.72rem;
+    color: #999;
+    min-width: 68px;
+}
+
+.prUpdateBtn {
+    padding: 0.3rem 0.7rem;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.prUpdateBtn:hover { background: #555; }
+
+/* ── Checkbox toggle ──────────────────────────────────── */
+.prToggleLabel {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.prToggleLabel input { display: none; }
+
+.prToggleBox {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    display: inline-block;
+    flex-shrink: 0;
+    transition: all 0.15s;
+}
+
+.prToggleLabel input:checked + .prToggleBox {
+    background: #333;
+    border-color: #333;
+}
+
+/* ── Inline update form ───────────────────────────────── */
+.prUpdateForm {
+    margin-top: 0.75rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.prUpdateForm input[type="number"],
+.prUpdateForm input[type="date"] {
+    flex: 1;
+    min-width: 110px;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.85rem;
+}
+
+.prSaveBtn {
+    padding: 0.4rem 0.85rem;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.prSaveBtn:hover { background: #555; }
+
+.prCancelBtn {
+    padding: 0.4rem 0.85rem;
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.prCancelBtn:hover { background: #f0f0f0; }
+
+/* ── PR history expander ──────────────────────────────── */
+.prHistorySection { margin-top: 0.5rem; }
+
+.prHistoryToggle {
+    background: none;
+    border: none;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.75rem;
+    color: #888;
+    cursor: pointer;
+    padding: 0;
+}
+
+.prHistoryToggle:hover { color: #333; }
+
+.prHistoryList {
+    flex-direction: column;
+    gap: 0.2rem;
+    margin-top: 0.4rem;
+    padding-left: 0.75rem;
+    border-left: 2px solid #e0e0e0;
+}
+
+.prHistoryItem {
+    font-size: 0.75rem;
+    color: #777;
+}
+
+/* ── Profile PR box (main page info_box) ──────────────── */
+.info_box {
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+}
+
+.info_box:hover {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.prInfoHint {
+    font-size: 0.68rem;
+    color: #bbb;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+#profilePRs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.profilePRItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.15rem 0;
+    font-size: 0.82rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.profilePRItem:last-child { border-bottom: none; }
+
+.profilePRName  { color: #666; font-weight: 500; }
+.profilePRValue { color: #333; font-weight: 700; }
+
+.noprMsg {
+    font-size: 0.75rem;
+    color: #bbb;
+    text-align: center;
+    padding: 0.5rem 0;
+    font-style: italic;
+}

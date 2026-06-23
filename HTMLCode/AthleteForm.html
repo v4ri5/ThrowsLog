@@ -1,19 +1,12 @@
-<!-- Create the for the athlete form with the following fields: 
-    >Athlete Event
-    >Description of training
-    >Key Takeaways
-    >How they felt
-    >How they sleep
-    >If they ate 
-    >If they are injured if so what injuries
-Each field should be required
--->
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="/CSSCode/FormStyleCSS.css">
-    
 </head>
 <body>
     <form id="AthleteForm">
+
         <label for="date">Date:</label>
         <input type="date" id="date" name="date" required>
 
@@ -24,44 +17,57 @@ Each field should be required
             <option value="discus">Discus</option>
             <option value="hammer">Hammer</option>
             <option value="weight">Weight</option>
-            <option value="javilin">Javilin</option>
+            <option value="javelin">Javelin</option>
+            <option value="weights">Weights</option>
         </select>
-        
-        
+
+        <label for="SessionType">Session Type:</label>
+        <select id="SessionType" name="SessionType" required>
+            <option value="">-- Select --</option>
+            <option value="technique">Technique</option>
+            <option value="maxeffort">Max Effort</option>
+            <option value="recovery">Recovery</option>
+        </select>
+
+
         <label for="Description">Description:</label>
         <textarea id="Description" name="Description" required></textarea>
 
-        
         <label for="keyTakeaways">Key Takeaways:</label>
         <textarea id="keyTakeaways" name="keyTakeaways" required></textarea>
 
-        
-        <label for="feel">Feel Good?(y/n):</label>
-        <select id="feel" name="feel" required>
+        <label for="RPE">How hard did training feel(1-10)?</label>
+        <input type="number" id="RPE" name="RPE" min="1" max="10" required>
+
+        <label for="sleep">Sleep (Hours):</label>
+        <input type="number" id="sleep" name="sleep" min="0" max="24" step="0.5" required>
+
+        <label for="PreSessionSoreness">Pre-Session Soreness (1-5):</label>
+        <input type="number" id="PreSessionSoreness" name="PreSessionSoreness" min="1" max="5" required>
+
+        <label for="AteBeforeSession">Ate Before Session:</label>
+        <select id="AteBeforeSession" name="AteBeforeSession" required>
             <option value="">-- Select --</option>
-            <option value="great">Great</option>
-            <option value="good">Good</option>
-            <option value="okay">Okay</option>
-            <option value="poor">Poor</option>
-        </select>
-
-        
-        <label for="sleep">Sleep(Hours):</label>
-        <input type="number" id="sleep" name="sleep" required>
-
-        
-        <label for="food">Did you eat?(y/n):</label>
-        <select id="food" name="food" required>
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
 
-        
-        <label for="injuries">Injuries(list them):</label>
-        <input type="textarea" id="injuries" name="injuries" >
+        <label for="AteAfterSession">Ate After Session:</label>
+        <select id="AteAfterSession" name="AteAfterSession" required>
+            <option value="">-- Select --</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
 
-        
+        <label for="MotivationLevel">Motivation Level (1-5):</label>
+        <input type="number" id="MotivationLevel" name="MotivationLevel" min="1" max="5" required>
+
+        <label for="injuries">Injuries:</label>
+        <textarea id="injuries" name="injuries" placeholder="None"></textarea>
+
         <input type="submit" value="Submit">
+
     </form>
-    <script src="/JavaScript Code/AthleteForm.js"></script>
+    <script type="module" src="/JavaScript Code/AthleteForm.js"></script>
 </body>
+</html>

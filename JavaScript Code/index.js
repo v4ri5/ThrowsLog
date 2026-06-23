@@ -1,11 +1,20 @@
+import renderSuggestion from './Suggestion.js';
+
+
 function openPopup() {
     document.getElementById("athleteForm").style.display = "flex";
+    renderSuggestion();
 }
 
 function closePopup() {
     document.getElementById("athleteForm").style.display = "none";
-
+    
+    renderSuggestion(); // Refresh the suggestion panel after closing the form
 }
+
+window.openPopup = openPopup;
+window.closePopup = closePopup;
+
 const entries = JSON.parse(localStorage.getItem('trainingLog')) || [];
 entries.forEach(entry => {
     console.log(entry);
@@ -16,8 +25,8 @@ let newestFirst = true;
 
 function openHistory() {
     const popup = document.getElementById('trainingHistory');
-    allEntries = JSON.parse(localStorage.getItem('trainingLog'))||[];
-    allEntries.reverse();
+    allEntries = JSON.parse(localStorage.getItem('trainingLog')) || [];
+    allEntries.sort((a, b) => new Date(b.date) - new Date(a.date));
     document.getElementById('entryCount').textContent = allEntries.length + ' Entries';
     updateFlameColor(allEntries.length);
     updateStats();
@@ -43,7 +52,7 @@ function filterHistory(){
     if(!newestFirst) filtered.reverse();
     renderEntries(filtered);
 }
-
+window.deleteEntry = deleteEntry;
 function deleteEntry(index){
     const stored = JSON.parse(localStorage.getItem('trainingLog')) || [];
     const entryToDelete = allEntries[index];
@@ -67,12 +76,15 @@ function renderEntries(entries) {
     } else {
         content.innerHTML = entries.map((entry, index) => `
             <div class="historyEntry">
-                <h3>${entry.date} — ${entry.event}</h3>
+                <h3>${entry.date} — ${entry.event} — ${entry.sessionType}</h3>
                 <p><strong>Description:</strong> ${entry.description}</p>
                 <p><strong>Key Takeaways:</strong> ${entry.keyTakeaways}</p>
-                <p><strong>Feel:</strong> ${entry.feel}</p>
+                <p><strong>RPE:</strong> ${entry.rpe}</p>
+                <p><strong>Pre-Session Soreness:</strong> ${entry.preSessionSoreness}</p>
+                <p><strong>Ate Before Session:</strong> ${entry.ateBeforeSession}</p>
+                <p><strong>Ate After Session:</strong> ${entry.ateAfterSession}</p>
+                <p><strong>Motivation Level:</strong> ${entry.motivationLevel}</p>
                 <p><strong>Sleep:</strong> ${entry.sleep} hrs</p>
-                <p><strong>Ate:</strong> ${entry.food}</p>
                 <p><strong>Injuries:</strong> ${entry.injuries || 'None'} </p>
                 <button class="deleteBtn" onclick="deleteEntry(${index})">Delete</button>    
             </div>
@@ -97,16 +109,7 @@ function updateStats() {
     let check = new Date();
     check.setHours(0, 0, 0, 0);
 
-    for (let i = dates.length - 1; i >= 0; i--) {
-        const entryDate = new Date(dates[i]);
-        entryDate.setHours(0, 0, 0, 0);
-        if (entryDate.getTime() === check.getTime()) {
-            streak++;
-            check.setDate(check.getDate() - 1);
-        } else {
-            break;
-        }
-    }
+    
 
     document.getElementById('entryCount').textContent = 
         `${allEntries.length} Entries · Avg Sleep: ${avgSleep}hrs · ${streak}Streak`;
@@ -137,3 +140,25 @@ function updateFlameColor(count) {
         flame.style.fill = color;
     });
 }
+
+
+const tlBtn = document.getElementById('TL_button');
+tlBtn.addEventListener('click', openPopup);
+const historyBtn = document.getElementById('trainingHistorybtn');
+historyBtn.addEventListener('click', openHistory);
+const closehistoryBtn = document.getElementById('closeHistory');
+closehistoryBtn.addEventListener('click', closeHistory);
+const closeBtn = document.getElementById('closeBut')
+closeBtn.addEventListener('click', closePopup);
+const closePRsBtn = document.getElementById('closePRs');
+closePRsBtn.addEventListener('click', closePRs);
+const prTabField = document.getElementById('prTab_field');
+prTabField.addEventListener('click', () => switchPRTab('field'));
+const prTabWeightRoom = document.getElementById('prTab_weightRoom');
+prTabWeightRoom.addEventListener('click', () => switchPRTab('weightRoom'));
+const sortToggleBtn = document.getElementById('sortToggle');
+sortToggleBtn.addEventListener('click', toggleSort);
+const historyFilterInput = document.getElementById('historyFilter');
+historyFilterInput.addEventListener('input', filterHistory);
+const sortByFeelSelect = document.getElementById('sortByFeel');
+sortByFeelSelect.addEventListener('change', filterHistory);
