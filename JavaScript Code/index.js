@@ -172,3 +172,7 @@ const historyFilterInput = document.getElementById('historyFilter');
 historyFilterInput.addEventListener('input', filterHistory);
 const sortByFeelSelect = document.getElementById('sortByFeel');
 sortByFeelSelect.addEventListener('change', filterHistory);
+const videoBtn = document.getElementById('VB');
+videoBtn.addEventListener('click', openPopupvideo);
+const closeVideoBtn = document.getElementById('Video_Player');
+closeVideoBtn.addEventListener('click', closePopupvideo);
