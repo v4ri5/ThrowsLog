@@ -32,6 +32,7 @@ entries.forEach(entry => {
 
 let allEntries = [];
 let newestFirst = true;
+let renderedEntries = [];
 
 function openHistory() {
     const popup = document.getElementById('trainingHistory');
@@ -52,12 +53,9 @@ function toggleSort(){
 }
 function filterHistory(){
     const search = document.getElementById('historyFilter').value.toLowerCase();
-    const feelFilter = document.getElementById('sortByFeel').value;
 
     let filtered = allEntries.filter(entry => {
-        const matchesEvent = (entry.event || '').toLowerCase().includes(search);
-        const matchesFeel = feelFilter === '' || entry.feel === feelFilter;
-        return matchesEvent && matchesFeel;
+        return (entry.event || '').toLowerCase().includes(search);
     });
 
     if(!newestFirst) filtered.reverse();
@@ -66,7 +64,7 @@ function filterHistory(){
 window.deleteEntry = deleteEntry;
 function deleteEntry(index){
     const stored = JSON.parse(localStorage.getItem('trainingLog')) || [];
-    const entryToDelete = allEntries[index];
+    const entryToDelete = renderedEntries[index];
 
     const storedIndex = stored.findIndex(entry =>
         entry.date === entryToDelete.date &&
@@ -81,6 +79,7 @@ function deleteEntry(index){
     }   
 }
 function renderEntries(entries) {
+    renderedEntries = entries;
     const content = document.getElementById('historyContent');
     if (entries.length === 0) {
         content.innerHTML = '<p style="color:#999; text-align:center;">No entries found.</p>';
@@ -110,20 +109,29 @@ function updateStats() {
         ? (sleepEntries.reduce((sum, e) => sum + parseFloat(e.sleep), 0) / sleepEntries.length).toFixed(1)
         : 0;
 
-    // Streak — count consecutive days from today backwards
-    const dates = allEntries
-        .map(e => new Date(e.date).toDateString())
-        .filter((d, i, arr) => arr.indexOf(d) === i) // remove duplicates
-        .reverse(); // oldest first
+    // Streak — count consecutive days ending today (or yesterday)
+    const dateSet = new Set(
+        allEntries.map(e => new Date(e.date + 'T00:00:00').toDateString())
+    );
 
     let streak = 0;
     let check = new Date();
     check.setHours(0, 0, 0, 0);
 
+    // If nothing logged today yet, don't kill the streak — start from yesterday
+    if (!dateSet.has(check.toDateString())) {
+        check.setDate(check.getDate() - 1);
+    }
+
+    while (dateSet.has(check.toDateString())) {
+        streak++;
+        check.setDate(check.getDate() - 1);
+    }
+
     
 
     document.getElementById('entryCount').textContent = 
-        `${allEntries.length} Entries · Avg Sleep: ${avgSleep}hrs · ${streak}Streak`;
+       `${allEntries.length} Entries · Avg Sleep: ${avgSleep}hrs · ${streak} Day Streak`;
 }
 
 function closeHistory() {
@@ -153,7 +161,15 @@ function updateFlameColor(count) {
     });
 }
 
+window.addEventListener('message', (event) => {
+    if (event.data === 'formSubmitted') {
+        closePopup();
+    }
+});
 
+
+const prInfoBox = document.getElementById('prInfoBox');
+prInfoBox.addEventListener('click', openPRs);
 const tlBtn = document.getElementById('TL_button');
 tlBtn.addEventListener('click', openPopup);
 const historyBtn = document.getElementById('trainingHistorybtn');
@@ -172,9 +188,7 @@ const sortToggleBtn = document.getElementById('sortToggle');
 sortToggleBtn.addEventListener('click', toggleSort);
 const historyFilterInput = document.getElementById('historyFilter');
 historyFilterInput.addEventListener('input', filterHistory);
-const sortByFeelSelect = document.getElementById('sortByFeel');
-sortByFeelSelect.addEventListener('change', filterHistory);
 const videoBtn = document.getElementById('VB');
 videoBtn.addEventListener('click', openPopupvideo);
-const closeVideoBtn = document.getElementById('Video_Player');
+const closeVideoBtn = document.getElementById('closeVideo');
 closeVideoBtn.addEventListener('click', closePopupvideo);

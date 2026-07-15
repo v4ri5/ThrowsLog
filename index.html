@@ -2,8 +2,7 @@
     <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="/CSSCode/Css.css">
-        <link rel="stylesheet" href="/CSSCode/Css.css">
+        <link rel="stylesheet" href="CSSCode/Css.css">
         <title>Athlete-Training-Log</title>
         
         <!-- Tabler icons for the suggestion card icons -->
@@ -13,38 +12,37 @@
 
     <div class = "top">
         <div class="pic_box">
-            <img src="/Assets/Images/profilePic.jpg" alt="Profile pic" class="profile_pic">
+            <img src="Assets/Images/profilePic.jpg" alt="Profile pic" class="profile_pic">
         </div>
         <div class = "getDone_box">
             <h1 class="heading" style="font-size: 25px">Goals</h1>
-            <div class="goal_info"><p>you can put whatever info you want here such as season goals and things to work on. this is just random text to make sure thisa is working the way I want it t. more randome text to make sure this looks good and work properly. it works on my computer so hopfuly it works on yours : ). </p></div></div>
-
+            <div class="goal_info"><p>Set your season goals and technical focus points here. Example: Break 55' in shot put, clean up right-leg drive out of the back, qualify for regionals.</p></div>
     </div>
 
 
     <div class ="bottom">
         <div id="suggestion-panel"></div>
-        <div class="info_box">
+        <div class="info_box" id="prInfoBox">
                 <h1 class="heading" style="font-size: 20px">Personal Records</h1>
                 <p class="prInfoHint">tap to edit</p>
                 <div id="profilePRs"></div>
                 </div>            
                 <div class="video_box">
                 <button class = "video_button" id="VB" >
-                    <img src="/Assets/Images/camera.jpg" alt="cam pic" class="cam_pic">
+                    <img src="Assets/Images/camera.jpg" alt="cam pic" class="cam_pic">
                 </button>
                 <p class="btn-label">Video</p>
             </div>
             
             <div class = "trainingLog_box">
                 <button  class="TrainingLog_button" id="TL_button">
-                    <img src="/Assets/Images/MinimalistNotebook.jpg" alt="notebook pic" class="notebook_pic"> 
+                    <img src="Assets/Images/MinimalistNotebook.jpg" alt="notebook pic" class="notebook_pic"> 
                 </button>
                 <p class="btn-label">Training Log Form</p>
             </div>
             <div class = "trainingHistorybtn_box">
                 <button class="trainingHistorybtn" id="trainingHistorybtn">
-                    <img src="/Assets/Images/HistoryIcon.jpg" alt="historyNoteBook" class="history_NoteBook"> 
+                    <img src="Assets/Images/HistoryIcon.jpg" alt="historyNoteBook" class="history_NoteBook"> 
                 </button>
                 <p class="btn-label">Training History</p>
             </div>
@@ -238,13 +236,6 @@
             
             <div class="historyControls">
                 <input type="text" id="historyFilter" placeholder="Search by event...">
-                <select name="sortByFeel" id="sortByFeel" >
-                    <option value="">-- Sort By Feel --</option>
-                    <option value="great">Great</option>
-                    <option value="good">Good</option>
-                    <option value="okay">Okay</option>
-                    <option value="poor">Poor</option>
-                </select>
                 <button id="sortToggle">Newest First</button>
             </div>
             <div class="historyContent" id="historyContent">
@@ -262,14 +253,9 @@
     <div class="videoplayer" id="Video_Player" style="display: none">
         <div class="videoPlayerPopup" id="videoPlayerPopup">
             <iframe class="Iframe" src="videoPlayer.html"></iframe>
-            <button class="CloseBut" id="closeBut"">X</button>
+            <button class="CloseBut" id="closeVideo">X</button>
         </div>
     </div>
-
-    <div class="TrainingHistory" id="trainingHistory" style="display: none;">
-        <div>
-</div>
-
         <!-- PR Manager Popup -->
 <div class="PRPopup" id="prPopup" style="display:none;">
     <div class="PRPopUpContent">
@@ -284,9 +270,9 @@
         <div class="prContent" id="prContent"></div>
     </div>
 </div>
-        <script type="module" src="/JavaScript Code/index.js" ></script>
-        <script src="/JavaScript Code/PRs.js"></script>
+        <script type="module" src="js/index.js" ></script>
+        <script src="js/PRs.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
-        <script type="module" src="/JavaScript Code/Suggestion.js"></script>
-    </body>
+        <script type="module" src="js/Suggestion.js"></script>
+</body>
 </html>

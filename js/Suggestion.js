@@ -11,8 +11,8 @@ function calcOvertrainingScore(entry) {
 
     if (rpe >= 9)      score += 3; else if (rpe >= 7)      score += 1;
     if (sleep <= 5)    score += 3; else if (sleep <= 6)    score += 1;
-    if (soreness >= 8) score += 3; else if (soreness >= 6) score += 1;
-    if (motiv <= 3)    score += 3; else if (motiv <= 5)    score += 1;
+    if (soreness >= 4) score += 3; else if (soreness >= 3) score += 1;
+    if (motiv <= 2)    score += 3; else if (motiv === 3)   score += 1;
 
     return score;
 }

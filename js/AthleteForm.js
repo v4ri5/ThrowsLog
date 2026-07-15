@@ -25,9 +25,7 @@ document.getElementById('AthleteForm').addEventListener('submit', function(e) {
     alert('Entry Saved');
     this.reset();
 
-    // calls closePopup() from the parent (main) page
-    renderSuggestion();
-    window.parent.closePopup();
+    window.parent.postMessage('formSubmitted', '*');
 });
 
 document.addEventListener('DOMContentLoaded', function() {
