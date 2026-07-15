@@ -1,33 +1,54 @@
+/* ════════════════════════════════════════════════════════
+   Athlete Training Log — Css.css (mobile-first rebuild)
+   Phone layout is the default; desktop is the media query.
+   All class names/ids match the existing HTML and JS.
+   ════════════════════════════════════════════════════════ */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+:root {
+    --ink: #2c2c2a;
+    --muted: #5f5e5a;
+    --line: #e0e0e0;
+    --card: #ffffff;
+    --bg: #f0f0f0;
+    --radius: 12px;
+}
+
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    color: var(--ink);
 }
+
+/* ── Header: photo + goals ─────────────────────────────── */
 
 .top {
     display: flex;
-    align-items: flex-start;
-    gap: 1.5rem;
-    padding: 2rem;
-    background: #fff;
-    border-bottom: 1px solid #e0e0e0;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.9rem;
+    padding: 1.5rem 1rem 1.1rem;
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
 }
 
 .pic_box {
     flex-shrink: 0;
-    width: clamp(80px, 24vw, 110px);
+    width: clamp(84px, 26vw, 120px);
     aspect-ratio: 1;
     border-radius: 50%;
     overflow: hidden;
     border: 3px solid #333;
+    cursor: pointer;
 }
 
 .pic_box .profile_pic {
@@ -37,51 +58,96 @@ body {
 }
 
 .getDone_box {
-    flex: 1;
+    width: 100%;
+    max-width: 640px;
     background: #f9f9f9;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--line);
     border-radius: 10px;
-    padding: 1rem 1.25rem;
+    padding: 0.9rem 1.1rem;
+    text-align: left;
 }
 
 .getDone_box .heading {
-    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.35rem;
+}
+
+.goalsHeading { font-size: clamp(19px, 5vw, 25px); }
+.prHeading    { font-size: clamp(16px, 4.5vw, 20px); }
+
+.goal_info p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.goal_info p[contenteditable] {
+    outline: none;
+    white-space: pre-wrap;
+    min-height: 1.5em;
+}
+
+.goal_info p[contenteditable]:focus {
+    background: #fffbe6;
+    border-radius: 6px;
+}
+
+/* ── Main content: buttons row, then full-width cards ──── */
+
+.bottom {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem 0.5rem;
+    padding: 1rem;
+    align-items: start;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+/* Row of three action buttons first, then readiness, then PRs */
+.video_box,
+.trainingLog_box,
+.trainingHistorybtn_box {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 0;
+}
+
+#suggestion-panel {
+    order: 2;
+    grid-column: 1 / -1;
+    min-width: 0;
+}
+
+.info_box {
+    order: 3;
+    grid-column: 1 / -1;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    min-width: 0;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+}
+
+.info_box:hover {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.info_box .heading {
     font-weight: 600;
     color: #333;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: 0.5rem;
-}
-
-.goal_info p {
-    font-size: 0.875rem;
-    color: #555;
-    line-height: 1.6;
-}
-
-.bottom {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    padding: 2rem;
-    align-items: flex-start;
-}
-
-.info_box {
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 1rem 1.25rem;
-    min-width: 180px;
-}
-
-.info_box .heading {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.75rem;
     text-align: center;
 }
 
@@ -97,30 +163,34 @@ body {
     text-align: center;
 }
 
+/* ── Round action buttons ──────────────────────────────── */
 
 .video_button, .TrainingLog_button, .trainingHistorybtn {
-    width: clamp(5.5rem, 26vw, 8rem);
+    width: min(100%, 7.5rem);
     aspect-ratio: 1;
     border-radius: 50%;
     border: 2px solid #333;
-    background: #fff;
+    background: var(--card);
     cursor: pointer;
     overflow: hidden;
-    display:flex;
+    display: flex;
     flex-direction: column;
     gap: 0.4rem;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s;
-
-    font-family: 'Segoe UI', sans-serif;
+    transition: background 0.2s, transform 0.1s;
+    font-family: inherit;
 }
 
-.video_button:hover, .TrainingLog_button:hover, .trainingHistorybtn:hover  {
-    background: #3a3a3a;
+.video_button:hover, .TrainingLog_button:hover, .trainingHistorybtn:hover {
+    background: #f5f5f3;
 }
 
-.cam_pic, .notebook_pic,.history_NoteBook {
+.video_button:active, .TrainingLog_button:active, .trainingHistorybtn:active {
+    transform: scale(0.96);
+}
+
+.cam_pic, .notebook_pic, .history_NoteBook {
     width: 62%;
     height: 62%;
     object-fit: contain;
@@ -128,13 +198,17 @@ body {
 }
 
 .btn-label {
-    font-size: 0.75rem;
-    color: #555;
+    font-size: 0.72rem;
+    color: var(--muted);
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    line-height: 1.3;
 }
-.AthleteForm , .videoplayer {
+
+/* ── Popup overlays ────────────────────────────────────── */
+
+.AthleteForm, .videoplayer, .TrainingHistory, .PRPopup {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
@@ -145,41 +219,141 @@ body {
     z-index: 1000;
 }
 
-.AthletePopUpForm , .videoPlayerPopup{
+/* Popup panels: true full screen on mobile */
+.AthletePopUpForm,
+.videoPlayerPopup,
+.TrainingHistoryPopUp,
+.PRPopUpContent {
     position: relative;
-    background: #fff;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 600px;
-    height: 80vh;
+    background: var(--card);
+    width: 100%;
+    height: 100dvh;
+    max-width: none;
+    border-radius: 0;
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
-.TrainingHistory {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
+
+.TrainingHistoryPopUp {
+    overflow-y: auto;
+    padding: 1rem;
+    padding-top: 3.25rem; /* clears the X button */
+}
+
+.PRPopUpContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.Iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.CloseBut {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    border: none;
+    background: #333;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9rem;
+    z-index: 5;
+}
+
+.CloseBut:hover {
+    background: #555;
+}
+
+.feedback {
+    padding: 0.5rem 2rem 1rem;
+    font-size: 0.8rem;
+    color: #999;
+}
+
+/* ── Training history ──────────────────────────────────── */
+
+.historyHeader {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    height: 96px;
+    margin-bottom: 1rem;
+    overflow: hidden;
 }
-.TrainingHistoryPopUp {
+
+.mo-fire {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -24px;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.mo-fire svg {
+    width: min(600px, 95vw);
+    height: auto;
+    display: block;
+}
+
+.count {
     position: relative;
-    background: #fff;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 600px;
-    height: 80vh;
-    overflow-y: auto;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    padding: 2rem;
+    z-index: 1;
+    font-size: clamp(0.95rem, 4vw, 2rem);
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    padding: 0 0.5rem;
 }
+
+.historyControls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+}
+
+.historyControls input,
+.historyControls select {
+    width: 100%;
+    padding: 0.65rem 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 1rem; /* 16px stops iOS zoom-on-focus */
+    font-family: inherit;
+    background: var(--card);
+}
+
+.historyControls button {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background: var(--card);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.historyControls button:hover {
+    background: #f0f0f0;
+}
+
 .historyEntry {
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--line);
     border-radius: 8px;
     padding: 1rem;
+    padding-bottom: 2.6rem; /* room for the delete button */
     margin-bottom: 1rem;
     background: #f9f9f9;
     position: relative;
@@ -197,8 +371,8 @@ body {
     font-size: 0.85rem;
     color: #555;
     line-height: 1.6;
+    overflow-wrap: break-word;
 }
-
 
 .deleteBtn {
     position: absolute;
@@ -208,8 +382,8 @@ body {
     color: #fff;
     border: none;
     border-radius: 6px;
-    padding: 0.3rem 0.75rem;
-    font-size: 0.75rem;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.78rem;
     cursor: pointer;
 }
 
@@ -217,106 +391,7 @@ body {
     background: #cc0000;
 }
 
-
-.Iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.CloseBut {
-    position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    border: none;
-    background: #333;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 0.8rem;
-    z-index: 1;
-}
-
-.CloseBut:hover {
-    background: #555;
-}
-
-.feedback {
-    padding: 0.5rem 2rem 1rem;
-    font-size: 0.8rem;
-    color: #999;
-}
-
-.historyControls {
-    display: flex;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-    align-items: center;
-}
-
-.historyControls input {
-    flex: 1;
-    padding: 0.5rem 0.75rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 0.85rem;
-}
-
-.historyControls button {
-    padding: 0.5rem 1rem;
-    border: 1px solid #333;
-    border-radius: 8px;
-    background: #fff;
-    cursor: pointer;
-    font-size: 0.85rem;
-    white-space: nowrap;
-    z-index: 0;
-}
-.historyControls button:hover {
-    background: #f0f0f0;
-}
-
-.historyHeader {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 120px;
-    margin-bottom: 1rem;
-}
-
-.mo-fire svg {
-    width: min(600px, 95vw);
-    height: auto;
-    display: block;
-}
-
-.mo-fire {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -30px;
-    z-index: 0;
-    overflow: hidden;
-}
-
-.count {
-    position: relative;
-    z-index: 1;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #ffffff; 
-    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-}
-
-@media (max-width: 600px) {
-    .top { flex-direction: column; align-items: center; }
-    .bottom { flex-direction: column; }
-}
-
+/* ── Flame animation (unchanged) ───────────────────────── */
 
 .flame {
     animation-name: flameDisappear;
@@ -378,38 +453,22 @@ body {
     }
 }
 
-
-/* ── Popup overlay + container ───────────────────────── */
-.PRPopup {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
+@media (prefers-reduced-motion: reduce) {
+    .flame, .flame-main {
+        animation: none;
+    }
 }
 
-.PRPopUpContent {
-    position: relative;
-    background: #fff;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 600px;
-    height: 80vh;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-}
+/* ════════════════════════════════════════════════════════
+   PR MANAGER
+   ════════════════════════════════════════════════════════ */
 
 .PRPopUpHeader {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.25rem 1.5rem;
-    border-bottom: 1px solid #e0e0e0;
+    padding: 1.1rem 1.25rem;
+    border-bottom: 1px solid var(--line);
     flex-shrink: 0;
 }
 
@@ -421,20 +480,23 @@ body {
     color: #333;
 }
 
-/* ── Tabs ─────────────────────────────────────────────── */
+.PRPopUpHeader .CloseBut {
+    position: static; /* sits in the header row, not floating */
+}
+
 .prTabs {
     display: flex;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid var(--line);
     flex-shrink: 0;
 }
 
 .prTab {
     flex: 1;
-    padding: 0.75rem;
+    padding: 0.85rem 0.5rem;
     border: none;
     border-bottom: 2px solid transparent;
     background: none;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: inherit;
     font-size: 0.85rem;
     font-weight: 600;
     color: #999;
@@ -452,12 +514,12 @@ body {
 .prContent {
     flex: 1;
     overflow-y: auto;
-    padding: 1rem 1.5rem;
+    padding: 1rem 1.25rem;
+    -webkit-overflow-scrolling: touch;
 }
 
-/* ── Entry row ────────────────────────────────────────── */
 .prEntry {
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--line);
     border-radius: 8px;
     padding: 0.75rem 1rem;
     margin-bottom: 0.75rem;
@@ -508,30 +570,31 @@ body {
 }
 
 .prUpdateBtn {
-    padding: 0.3rem 0.7rem;
+    padding: 0.45rem 0.85rem;
     background: #333;
     color: #fff;
     border: none;
     border-radius: 6px;
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 0.75rem;
+    font-family: inherit;
+    font-size: 0.78rem;
     cursor: pointer;
 }
 
 .prUpdateBtn:hover { background: #555; }
 
-/* ── Checkbox toggle ──────────────────────────────────── */
 .prToggleLabel {
     display: flex;
     align-items: center;
     cursor: pointer;
+    padding: 0.35rem; /* bigger touch target, same visual size */
+    margin: -0.35rem;
 }
 
 .prToggleLabel input { display: none; }
 
 .prToggleBox {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     border: 2px solid #ccc;
     border-radius: 3px;
     display: inline-block;
@@ -544,7 +607,6 @@ body {
     border-color: #333;
 }
 
-/* ── Inline update form ───────────────────────────────── */
 .prUpdateForm {
     margin-top: 0.75rem;
     display: flex;
@@ -557,50 +619,49 @@ body {
 .prUpdateForm input[type="date"] {
     flex: 1;
     min-width: 110px;
-    padding: 0.4rem 0.6rem;
+    padding: 0.55rem 0.6rem;
     border: 1px solid #ccc;
     border-radius: 6px;
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 0.85rem;
+    font-family: inherit;
+    font-size: 1rem; /* 16px stops iOS zoom-on-focus */
 }
 
 .prSaveBtn {
-    padding: 0.4rem 0.85rem;
+    padding: 0.55rem 1rem;
     background: #333;
     color: #fff;
     border: none;
     border-radius: 6px;
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 0.8rem;
+    font-family: inherit;
+    font-size: 0.85rem;
     cursor: pointer;
 }
 
 .prSaveBtn:hover { background: #555; }
 
 .prCancelBtn {
-    padding: 0.4rem 0.85rem;
-    background: #fff;
+    padding: 0.55rem 1rem;
+    background: var(--card);
     color: #333;
     border: 1px solid #ccc;
     border-radius: 6px;
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 0.8rem;
+    font-family: inherit;
+    font-size: 0.85rem;
     cursor: pointer;
 }
 
 .prCancelBtn:hover { background: #f0f0f0; }
 
-/* ── PR history expander ──────────────────────────────── */
 .prHistorySection { margin-top: 0.5rem; }
 
 .prHistoryToggle {
     background: none;
     border: none;
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 0.75rem;
+    font-family: inherit;
+    font-size: 0.78rem;
     color: #888;
     cursor: pointer;
-    padding: 0;
+    padding: 0.3rem 0;
 }
 
 .prHistoryToggle:hover { color: #333; }
@@ -610,7 +671,7 @@ body {
     gap: 0.2rem;
     margin-top: 0.4rem;
     padding-left: 0.75rem;
-    border-left: 2px solid #e0e0e0;
+    border-left: 2px solid var(--line);
 }
 
 .prHistoryItem {
@@ -618,15 +679,7 @@ body {
     color: #777;
 }
 
-/* ── Profile PR box (main page info_box) ──────────────── */
-.info_box {
-    cursor: pointer;
-    transition: box-shadow 0.2s;
-}
-
-.info_box:hover {
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-}
+/* ── Profile PR box (main page) ───────────────────────── */
 
 .prInfoHint {
     font-size: 0.68rem;
@@ -647,8 +700,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.15rem 0;
-    font-size: 0.82rem;
+    padding: 0.3rem 0;
+    font-size: 0.85rem;
     border-bottom: 1px solid #f0f0f0;
 }
 
@@ -658,23 +711,76 @@ body {
 .profilePRValue { color: #333; font-weight: 700; }
 
 .noprMsg {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     color: #bbb;
     text-align: center;
     padding: 0.5rem 0;
     font-style: italic;
 }
 
-.pic_box { cursor: pointer; }
+/* ════════════════════════════════════════════════════════
+   DESKTOP  (≥700px): header goes side-by-side, popups float
+   ════════════════════════════════════════════════════════ */
 
-.goal_info p[contenteditable] {
-    outline: none;
-    white-space: pre-wrap;   /* keeps line breaks when goals reload */
-    min-height: 1.5em;        /* stays tappable even when empty */
+@media (min-width: 700px) {
+
+    .top {
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+        gap: 1.5rem;
+        padding: 2rem;
+    }
+
+    .getDone_box {
+        flex: 1;
+        max-width: none;
+    }
+
+    .bottom {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        padding: 2rem;
+        align-items: flex-start;
+        max-width: none;
+        margin: 0;
+    }
+
+    /* Restore desktop order: readiness, PRs, then buttons */
+    #suggestion-panel { order: 1; }
+    .info_box         { order: 2; min-width: 180px; }
+    .video_box, .trainingLog_box, .trainingHistorybtn_box { order: 3; }
+
+    .video_button, .TrainingLog_button, .trainingHistorybtn {
+        width: 8rem;
+    }
+
+    /* Popups float again as centered cards */
+    .AthletePopUpForm,
+    .videoPlayerPopup,
+    .TrainingHistoryPopUp,
+    .PRPopUpContent {
+        width: 90%;
+        max-width: 600px;
+        height: 80vh;
+        border-radius: var(--radius);
+    }
+
+    .TrainingHistoryPopUp {
+        padding: 2rem;
+        padding-top: 3.25rem;
+    }
+
+    .historyControls {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .historyControls input { flex: 1; }
+    .historyControls select,
+    .historyControls button { width: auto; }
+
+    .historyHeader { height: 120px; }
+    .mo-fire { bottom: -30px; }
 }
-.goal_info p[contenteditable]:focus {
-    background: #fffbe6;
-    border-radius: 6px;
-}
-.goalsHeading { font-size: clamp(19px, 5vw, 25px); }
-.prHeading    { font-size: clamp(16px, 4.5vw, 20px); }

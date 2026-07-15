@@ -1,41 +1,81 @@
-label{
-    display: block;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
-}
+/* ════════════════════════════════════════════════════════
+   FormStyleCSS.css — mobile-first rebuild
+   The form fills the popup edge-to-edge on phones and
+   becomes a centered card on desktop.
+   ════════════════════════════════════════════════════════ */
 
-body{
-    display: flex;
-    justify-content: center; /* horizontal*/
-    align-items: center; /*vertical*/
-    min-height: 100vh;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f5f5f5;
-}
-
-input,select,textarea{
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
+* {
     box-sizing: border-box;
 }
 
-input[type="submit"]{
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: #fff;
+}
+
+form {
+    background: #fff;
+    width: 100%;
+    padding: 1.25rem 1.25rem 2rem;
+    padding-top: 3.25rem; /* clears the X button overlaying the iframe */
+}
+
+label {
+    display: block;
+    margin-top: 1.1rem;
+    margin-bottom: 0.4rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.7rem 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem; /* 16px stops iOS zoom-on-focus */
+    font-family: inherit;
+}
+
+textarea {
+    min-height: 4.5rem;
+    resize: vertical;
+}
+
+input[type="submit"] {
     background-color: #333;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 0.9rem 1.25rem;
     cursor: pointer;
-    border-radius: 4px;
-    margin-top: 1.2rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+    width: 100%;
+    font-size: 1.05rem;
+    font-weight: 600;
 }
-form{
-    background: white;
-    padding: 2rem;
-    width: 90%;
-    max-width: 500px;
-    border-radius: 20px;
+
+input[type="submit"]:hover {
+    background-color: #555;
+}
+
+/* ── Desktop: back to a centered card ─────────────────── */
+
+@media (min-width: 700px) {
+    body {
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f5f5f5;
+    }
+
+    form {
+        max-width: 500px;
+        border-radius: 20px;
+        padding: 2rem;
+        padding-top: 3rem;
+    }
 }
