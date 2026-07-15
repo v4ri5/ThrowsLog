@@ -41,6 +41,7 @@ function openHistory() {
     updateFlameColor(allEntries.length);
     updateStats();
     renderEntries(allEntries);
+    renderSuggestion();
     popup.style.display = 'flex'
 }
 
@@ -127,6 +128,7 @@ function updateStats() {
 
 function closeHistory() {
     document.getElementById('trainingHistory').style.display = 'none';
+    renderSuggestion();
 }
 
 
