@@ -668,3 +668,15 @@ body {
     padding: 0.5rem 0;
     font-style: italic;
 }
+
+.pic_box { cursor: pointer; }
+
+.goal_info p[contenteditable] {
+    outline: none;
+    white-space: pre-wrap;   /* keeps line breaks when goals reload */
+    min-height: 1.5em;        /* stays tappable even when empty */
+}
+.goal_info p[contenteditable]:focus {
+    background: #fffbe6;
+    border-radius: 6px;
+}

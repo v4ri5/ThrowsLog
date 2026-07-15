@@ -168,6 +168,67 @@ window.addEventListener('message', (event) => {
 });
 
 
+// ── Profile photo ─────────────────────────────
+const picBox = document.getElementById('picBox');
+const photoInput = document.getElementById('photoInput');
+const profilePic = document.getElementById('profilePic');
+
+// Load saved photo on startup
+const savedPhoto = localStorage.getItem('profilePhoto');
+if (savedPhoto) profilePic.src = savedPhoto;
+
+picBox.addEventListener('click', () => photoInput.click());
+
+photoInput.addEventListener('change', () => {
+    const file = photoInput.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+        const img = new Image();
+        img.onload = () => {
+            // Resize + center-crop to a 300px square before saving
+            const size = 300;
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            const side = Math.min(img.width, img.height);
+            const sx = (img.width - side) / 2;
+            const sy = (img.height - side) / 2;
+            ctx.drawImage(img, sx, sy, side, side, 0, 0, size, size);
+
+            const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+            try {
+                localStorage.setItem('profilePhoto', dataUrl);
+                profilePic.src = dataUrl;
+            } catch (e) {
+                alert('Photo could not be saved — storage is full.');
+            }
+        };
+        img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+    photoInput.value = ''; // lets them pick the same file again later
+});
+
+// ── Editable goals ────────────────────────────
+const goalText = document.getElementById('goalText');
+const DEFAULT_GOALS = 'Tap here to set your season goals and technical focus points.';
+
+const savedGoals = localStorage.getItem('athleteGoals');
+goalText.innerText = savedGoals || DEFAULT_GOALS;
+
+goalText.addEventListener('blur', () => {
+    const text = goalText.innerText.trim();
+    if (text === '' || text === DEFAULT_GOALS) {
+        localStorage.removeItem('athleteGoals');
+        goalText.innerText = DEFAULT_GOALS;
+    } else {
+        localStorage.setItem('athleteGoals', text);
+    }
+});
+
 const prInfoBox = document.getElementById('prInfoBox');
 prInfoBox.addEventListener('click', openPRs);
 const tlBtn = document.getElementById('TL_button');

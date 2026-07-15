@@ -11,13 +11,15 @@
     <body class = "body">
 
     <div class = "top">
-        <div class="pic_box">
-            <img src="Assets/Images/profilePic.jpg" alt="Profile pic" class="profile_pic">
+        <div class="pic_box" id="picBox">
+        <img src="Assets/Images/profilePic.jpg" alt="Profile pic" class="profile_pic" id="profilePic">
         </div>
-        <div class = "getDone_box">
-            <h1 class="heading" style="font-size: 25px">Goals</h1>
-            <div class="goal_info"><p>Set your season goals and technical focus points here. Example: Break 55' in shot put, clean up right-leg drive out of the back, qualify for regionals.</p></div>
-    </div>
+        <input type="file" id="photoInput" accept="image/*" style="display:none;">
+       <div class="getDone_box">
+        <h1 class="heading" style="font-size: 25px">Goals</h1>
+        <p class="prInfoHint" style="text-align:left;">tap to edit</p>
+        <div class="goal_info"><p id="goalText" contenteditable="true"></p></div>
+        </div>
 
 
     <div class ="bottom">
