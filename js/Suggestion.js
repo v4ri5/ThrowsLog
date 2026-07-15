@@ -124,7 +124,7 @@ export default function renderSuggestion() {
     </ul>
 </div>
 
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.25rem;">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:1.25rem;">
     ${[
         { label: 'RPE',        val: latest.rpe,                icon: 'ti-flame' },
         { label: 'Sleep (h)',  val: latest.sleep,              icon: 'ti-moon' },
@@ -146,7 +146,7 @@ export default function renderSuggestion() {
 </div>
 <div style="font-size:12px;color:#888;margin-bottom:6px;">Last ${recent.length} session${recent.length === 1 ? '' : 's'}</div>
 
-<div style="position:relative;width:100%;height:220px;">
+<div style="position:relative;width:100%;height:clamp(170px,45vw,220px);">
     <canvas id="suggestion-chart"
         role="img"
         aria-label="Line chart of RPE, sleep, soreness and motivation over the last ${recent.length} sessions.">

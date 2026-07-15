@@ -23,8 +23,8 @@ body {
 
 .pic_box {
     flex-shrink: 0;
-    width: 110px;
-    height: 110px;
+    width: clamp(80px, 24vw, 110px);
+    aspect-ratio: 1;
     border-radius: 50%;
     overflow: hidden;
     border: 3px solid #333;
@@ -99,8 +99,8 @@ body {
 
 
 .video_button, .TrainingLog_button, .trainingHistorybtn {
-    width: 8rem;
-    height: 8rem;
+    width: clamp(5.5rem, 26vw, 8rem);
+    aspect-ratio: 1;
     border-radius: 50%;
     border: 2px solid #333;
     background: #fff;
@@ -121,8 +121,8 @@ body {
 }
 
 .cam_pic, .notebook_pic,.history_NoteBook {
-    width: 80px;
-    height: 80px;
+    width: 62%;
+    height: 62%;
     object-fit: contain;
     border-radius: 50%;
 }
@@ -289,7 +289,7 @@ body {
 }
 
 .mo-fire svg {
-    width: 600px;
+    width: min(600px, 95vw);
     height: auto;
     display: block;
 }
@@ -378,10 +378,6 @@ body {
     }
 }
 
-
-/* ════════════════════════════════════════════════════════
-   PR MANAGER  —  paste this at the bottom of Css.css
-   ════════════════════════════════════════════════════════ */
 
 /* ── Popup overlay + container ───────────────────────── */
 .PRPopup {
@@ -680,3 +676,5 @@ body {
     background: #fffbe6;
     border-radius: 6px;
 }
+.goalsHeading { font-size: clamp(19px, 5vw, 25px); }
+.prHeading    { font-size: clamp(16px, 4.5vw, 20px); }
